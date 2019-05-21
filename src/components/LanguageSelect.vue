@@ -20,6 +20,7 @@ export default {
   methods: {
     selectLocale(locale) {
       this.$parent.changeLocale(locale)
+      this.$root.$emit('reactivity', locale)
     }
   }
 }

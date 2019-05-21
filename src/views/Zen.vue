@@ -11,6 +11,7 @@
         <br>
         <span v-html="$formatMessage({id: 'relax'})"></span>
       </p>
+      <div class="hidden">{{ render }}</div>
     </div>
 
     <div style="position: relative; animation-delay: 2.5s;" class="fade-in">
@@ -39,18 +40,20 @@
 <script>
 export default {
   name: 'Zen',
-
   data() {
     return {
-      toggleIcon: 'play_arrow'
+      toggleIcon: 'play_arrow',
+      render: 0
     }
   },
-
   mounted() {
     this.showPlayer = true
+    this.$root.$on('reactivity', this.reactivity)
   },
-
   methods: {
+    reactivity() {
+      this.render += 1
+    },
     toggleAudio() {
       if (this.$refs.zenTrack.paused) {
         this.toggleIcon = 'pause'

@@ -46,6 +46,12 @@ html {
   height: 100vh;
 }
 
+.hidden {
+  display: none;
+  color: #000;
+  opacity: 0;
+}
+
 body {
   background: #131317;
   padding: 0;

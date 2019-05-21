@@ -4,15 +4,9 @@
   >
     <div style="text-align: center;" class="fade-in fade-in--short">
       <div style="margin-bottom: 2rem">{{ $formatMessage({id: 'howStressed'}) }}</div>
-
+      <div class="hidden">{{ render }}</div>
       <ul class="stress-levels" style="list-style: none; font-size: 40px; display: flex;">
-        <!-- <li>🥰</li>
-        <li>🙂</li>
-        <li>😐</li>
-        <li>🙁</li>
-        <li>😫</li>-->
-
-        <li @click="selectStressLevel(1)">🥰</li>
+        <li @click="selectStressLevel(1)">😄</li>
         <li @click="selectStressLevel(2)">😀</li>
         <li @click="selectStressLevel(3)">😐</li>
         <li @click="selectStressLevel(4)">😣</li>
@@ -25,7 +19,18 @@
 <script>
 export default {
   name: 'Home',
+  data() {
+    return {
+      render: 0
+    }
+  },
+  mounted() {
+    this.$root.$on('reactivity', this.reactivity)
+  },
   methods: {
+    reactivity() {
+      this.render += 1
+    },
     selectStressLevel(level) {
       switch (level) {
         case 1:
